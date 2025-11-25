@@ -243,7 +243,8 @@ client.on("messageCreate", async (msg) => {
     const aiText = groqResp?.data?.choices?.[0]?.message?.content;
     if (aiText) {
       await msg.reply(aiText).catch(() => {});
-  } catch (err) {
+  } 
+   }catch (err) {
     console.error("messageCreate error:", err);
   }
 });
