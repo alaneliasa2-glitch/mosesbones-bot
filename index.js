@@ -243,9 +243,6 @@ client.on("messageCreate", async (msg) => {
     const aiText = groqResp?.data?.choices?.[0]?.message?.content;
     if (aiText) {
       await msg.reply(aiText).catch(() => {});
-    } else {
-      await msg.reply("Sorry, my AI brain glitched 😅 Try again later.");
-    }
   } catch (err) {
     console.error("messageCreate error:", err);
   }
