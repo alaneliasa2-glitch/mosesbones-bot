@@ -7,9 +7,10 @@ const {
 } = require("discord.js");
 const axios = require("axios");
 
+// ===== ENV VARS =====
 const TOKEN = process.env.TOKEN;
-const OPENAI_KEY = process.env.OPENAI_API_KEY || "";
-const CHANNEL_ID = process.env.CHANNEL_ID;           // general chat
+const GROQ_KEY = process.env.GROQ_API_KEY || "";   // <-- NEW: Groq key
+const CHANNEL_ID = process.env.CHANNEL_ID;         // general chat
 const WELCOME_CHANNEL_ID = process.env.WELCOME_CHANNEL_ID || CHANNEL_ID;
 const JOKE_CHANNEL_ID = process.env.JOKE_CHANNEL_ID || CHANNEL_ID;
 const PREFIX = process.env.PREFIX || "!";
@@ -205,22 +206,23 @@ client.on("messageCreate", async (msg) => {
     }
 
     // ========== AI CHAT (no prefix, just talking) ==========
-    if (!OPENAI_KEY) {
-      // if no AI key, simple fallback message
+    if (!GROQ_KEY) {
+      // if no Groq key, simple fallback message
       return msg.reply(
-        "Hey! 😄 I'm Moses Bones bot — chat with me or use `!help` / `!joke`! (AI key not configured yet.)"
+        "Hey! 😄 I'm Moses Bones bot — chat with me or use `!help` / `!joke`! (AI not configured yet.)"
       );
     }
 
-    const openaiResp = await axios.post(
-      "https://api.openai.com/v1/chat/completions",
+    // Call Groq's OpenAI-compatible chat endpoint
+    const groqResp = await axios.post(
+      "https://api.groq.com/openai/v1/chat/completions",
       {
-        model: "gpt-4o-mini",
+        model: "llama3-8b-8192",  // or "llama3-70b-8192" if you want bigger model
         messages: [
           {
             role: "system",
             content:
-              "You are a friendly and funny Discord bot for the Moses Bones server. Reply casually, add short jokes sometimes, be helpful, never rude."
+              "You are a friendly and funny Discord bot for the Moses Bones server. Reply casually, use short messages, add light jokes sometimes, never be rude."
           },
           { role: "user", content: msg.content }
         ],
@@ -229,16 +231,16 @@ client.on("messageCreate", async (msg) => {
       },
       {
         headers: {
-          Authorization: `Bearer ${OPENAI_KEY}`,
+          Authorization: `Bearer ${GROQ_KEY}`,
           "Content-Type": "application/json"
         }
       }
     ).catch(err => {
-      console.error("OpenAI error:", err?.response?.data || err.message);
+      console.error("Groq error:", err?.response?.data || err.message);
       return null;
     });
 
-    const aiText = openaiResp?.data?.choices?.[0]?.message?.content;
+    const aiText = groqResp?.data?.choices?.[0]?.message?.content;
     if (aiText) {
       await msg.reply(aiText).catch(() => {});
     } else {
