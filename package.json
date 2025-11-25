@@ -1,0 +1,17 @@
+{
+  "name": "mosesbones-bot",
+  "version": "1.0.0",
+  "description": "Moses Bones — Friendly AI + Moderation + Welcome + Daily Jokes Discord bot",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "LITE Animation",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.5.0",
+    "discord.js": "^14.12.0",
+    "dotenv": "^16.1.4",
+    "fs-extra": "^11.1.1"
+  }
+}
