@@ -47,6 +47,22 @@ const BAD_WORDS = ["fuck", "shit", "bitch", "slur1", "abuse1"];
 
 // --------- Jokes ----------
 const JOKES = [
+ "What do you call two monkeys that share an Amazon account? Prime mates.",
+ "What kind of noise does a witch’s vehicle make? Brrrroooom, brrroooom.",
+"My girlfriend keeps accusing me of cheating. She’s starting to sound like my wife.",
+"What’s brown and sticky? A stick.",
+"Two guys walked into a bar. The third guy ducked.",
+"Did you hear about the actor who broke his leg onstage? He’s still in the cast.",
+"How do you get a country girl’s attention? A tractor.",
+"What do you call it when a group of apes starts a company? Monkey business.",
+"Why did the pharmacist walk on her tiptoes? She didn’t want to wake the sleeping pills.",
+"I wanted to buy a pair of camouflage pants, but I couldn’t find any.",
+"Why are elevator jokes so classic and good? They work on many levels.",
+"I have an inferiority complex, but it’s not a very good one.",
+"What do you call a pudgy psychic? A four-chin teller.",
+"I had a date last night, and it was perfect. Tomorrow, I’ll have a fig.",
+"What did the police officer say to his belly button? You’re under a vest.",
+  "My wife asked me to stop singing “Wonderwall” to her. I said, “Maybe…”",
   "Why don’t skeletons fight each other? Because they don’t have the guts 😆💀",
   "I told my computer I needed a break… it showed me an ad for KitKat 🍫",
   "Why did the gamer bring a broom? To sweep the lobby 😂",
